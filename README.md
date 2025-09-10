@@ -6,6 +6,8 @@ Store and retrieve encrypted data safely using a secret passkey.
 ---
 
 ## Demo Features
+- **Step 1:** Enter secret access key (provided to Gumroad buyers)  
+- **Step 2:** Login with demo credentials:
 - Fixed login: Username: Ekta Khatri | Password: ekki123
 - Encrypt & store up to **2 data entries**
 - Retrieve data with your secret passkey
