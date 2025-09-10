@@ -4,12 +4,10 @@ from cryptography.fernet import Fernet
 import hashlib
 
 # ---------------- Session State Init ----------------
+if "key_verified" not in st.session_state:
+    st.session_state["key_verified"] = False
 if "authorized" not in st.session_state:
     st.session_state["authorized"] = False
-if "attempts" not in st.session_state:
-    st.session_state["attempts"] = 0
-if "stored_data" not in st.session_state:
-    st.session_state["stored_data"] = {}
 
 # ---------------- Encryption Setup ----------------
 @st.cache_resource
@@ -27,6 +25,21 @@ def encrypt_data(text):
 
 def decrypt_data(encrypted_text):
     return cipher.decrypt(encrypted_text.encode()).decode()
+
+
+# Secret key access control
+
+if not st.session_state["key_verified"]:
+    st.title("🔑 Enter Access Key (Demo Only)")
+    secret_key = st.text_input("Access Key", type="password")
+    if st.button("Submit Key"):
+        if secret_key == "GumroadDemo123":
+            st.session_state["key_verified"] = True
+            st.rerun()  # Refresh to move to login
+        else:
+            st.error("⚠️ Access denied! Only Gumroad buyers can use this demo.")
+    st.stop()  # ⬅️ STOP here until key is verified
+
 
 # ---------------- Login Page ----------------
 if not st.session_state["authorized"]:
