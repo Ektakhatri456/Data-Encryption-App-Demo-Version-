@@ -1,4 +1,4 @@
- 🔐 Secure Data Vault - Demo Version
+# 🔐 Secure Data Vault - Demo Version
 
 A simple **secure data encryption app** built with Streamlit and Python.  
 Store and retrieve encrypted data safely using a secret passkey.
